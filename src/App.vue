@@ -189,8 +189,8 @@
     <b-row >
      
       <b-col  md="6">
-        <b-card-body title="Contate-nos" class="">
-          
+        <b-card-body >
+          <h4  class="contate-nos">Contate-nos</h4>
           <b-card-text class="contat">
             Av. Bernardino de Campos, 98 <br> São Paulo<br>
             kors@gmail.com<br>
@@ -337,16 +337,19 @@ margin: 0;
  .card-title{
     text-transform: uppercase;
     margin: 20px 0 0 0;
-         text-align: left;
+    text-align:center;
     font-weight:bolder;
     color: rgb(126, 126, 126);
  }
  .cards{
+  
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 justify-content:space-evenly;
+
  }
+ 
  .card-body{
    text-align: left;
  }
@@ -390,7 +393,13 @@ padding: 0px 0 70px 0;
  .contat{
    font-size: 15px;
  }
-
+.contate-nos{
+  text-transform: uppercase;
+    margin: 20px 0 20px 0;
+   
+    font-weight:bolder;
+    color: rgb(126, 126, 126);
+}
  .informacoes{
    padding-top: 20px;
  }
