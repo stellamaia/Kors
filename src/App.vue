@@ -169,7 +169,7 @@
         <b-card-body title="">
           <b-card-text class="feedback">
             Esse é o parágrafo da seção de feedback.
-            Inceive os visitantes do seu site a avaliarem os seus produtos e adicionarem um feedback.
+            Incentive os visitantes do seu site a avaliarem os seus produtos e adicionarem um feedback.
           </b-card-text>
           <b-card-text class="feedback__info">
             O que você achou?
