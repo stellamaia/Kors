@@ -1,6 +1,6 @@
 # kors
 
-layout Responsivo 
+layout Responsivo com validação de formulario ainda não concluída.
 
 ![image](https://user-images.githubusercontent.com/78916702/145459123-3b6af540-d284-4f7e-a972-543d7d9bc66d.png)
 ![image](https://user-images.githubusercontent.com/78916702/145459186-2929ee78-d4b3-4b13-b991-e14442f5ee43.png)
