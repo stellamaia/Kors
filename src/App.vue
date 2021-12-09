@@ -201,76 +201,84 @@
       </b-col>
       
        <b-col md="3">
-        <label class="label__text" for="input-live">Nome*</label>
+        <label class="label__text" for="firstName">Primeiro Nome*</label>
           <b-form-input
-            id="input-live"
-            v-model="name"
-            :state="nameState"
-            aria-describedby="input-live-help input-live-feedback"
+            id="firstName"
+            type="text"
+            v-model.trim="$v.form.firstName.$model"
+            :state="getValidation('firstName')"  
             placeholder="Insira seu nome"
-            trim
+            
           ></b-form-input>
 
-            <label class="label__text" for="input-live">Telefone</label>
+            <label class="label__text" for="phone">Telefone</label>
           <b-form-input
-            id="input-live"
-            v-model="name"
-            :state="nameState"
-            aria-describedby="input-live-help input-live-feedback"
+           id="phone"
+            type="text"
+            v-mask="'(##) #####-####'"      
+            v-model.trim="$v.form.phone.$model"
+            :state="getValidation('phone')" 
             placeholder="Insira seu Telefone"
-            trim
+           
           ></b-form-input>
             
       </b-col>
        <b-col md="3">
-        <label class="label__text" for="input-live">Email*</label>
-          <b-form-input
-            id="input-live"
-            v-model="name"
-            :state="nameState"
-            aria-describedby="input-live-help input-live-feedback"
-            placeholder="Insira seu Email"
-            trim
+        <label class="label__text" for="lastName">Segundo Nome*</label>
+        <b-form-input
+            id="lastName"
+            type="text"
+            v-model.trim="$v.form.lastName.$model"
+            :state="getValidation('lastName')"  
+            placeholder="Insira seu Endereço"
+           
           ></b-form-input>
             
-            <label class="label__text" for="input-live">Endereço</label>
-          <b-form-input
-            id="input-live"
-            v-model="name"
-            :state="nameState"
-            aria-describedby="input-live-help input-live-feedback"
-            placeholder="Insira seu Endereço"
-            trim
+            <label class="label__text" for="email">Email</label>
+
+             <b-form-input
+                id="email"
+                type="email"
+                v-model.trim="$v.form.email.$model"
+                :state="getValidation('email')"          
+                placeholder="Insira seu Email"
+            
           ></b-form-input>
+        
       </b-col>
     <b-col md="6"></b-col>
       <b-col md="6">
-        <label class="label__text" for="input-live">Assunto</label>
+        <label class="label__text" for="subject">Assunto</label>
           
           <b-form-input
-            id="input-live"
-            v-model="name"
-            :state="nameState"
-            aria-describedby="input-live-help input-live-feedback"
+            id="subject"
+            type="text"
+            v-model.trim="$v.form.subject.$model"
+            :state="getValidation('subject')"         
             placeholder="Insira o Assunto"
-            trim
+            
           ></b-form-input>
-           <label class="label__text" for="input-live">Mensagem</label>          
+           <label class="label__text" for="message">Mensagem</label>          
           <b-form-input
-            id="input-live"
-            v-model="name"
-            :state="nameState"
-            aria-describedby="input-live-help input-live-feedback"
-            placeholder="Digite sua mensagem aqui"
-            trim
             class="mensagem"
+            id="message"
+            type="text"
+            v-model.trim="$v.form.message.$model"
+            :state="getValidation('message')"            
+            placeholder="Digite sua mensagem aqui"
+            
           ></b-form-input>
            </b-col>
 
            <b-col md="6"></b-col>
       <b-col md="6">
        
-            <b-button class="botao">Enviar</b-button>
+            <b-button 
+            id="botaoEnviar" 
+            type="button"
+            class="botao"
+            @click="submit">
+            Enviar</b-button>
          
            </b-col>
     </b-row>
@@ -283,10 +291,75 @@
 </template>
 
 <script>
+import { required, minLength, maxLength, email} from 'vuelidate/lib/validators'
 
 
 export default {
-  name: 'App',
+  name:'App',
+   data() {
+     return {
+       form:{
+          firstName:"",
+          lastName:"",
+          phone:"",
+          email:"",    
+          subject:"",
+          message:""
+       }
+     }
+   },
+   validations:{
+     form:{
+       firstName:{
+         required,
+         minLength:minLength(3)
+       },
+        lastName:{
+         required,
+          minLength:minLength(3)
+       },
+       phone:{
+         required,
+         
+        
+         
+       },
+       email:{
+         required,
+         email
+       },
+       subject:{
+         required,
+         minLength:minLength(5),
+         maxLength:maxLength(40)
+       },
+       message:{
+         required,
+         minLength:minLength(5),
+         maxLength:maxLength(100)
+       }
+     }
+   },
+   methods:{
+     submit() {
+       this.$v.$touch();
+       if(this.$v.$error){
+         return;
+       }
+     },
+    
+
+     getValidation(field){
+     if(this.$v.form.$dirty === false) {
+       return null;
+     }
+     return !this.$v.form[field].$error;
+   },
+
+
+
+   
+ }
  
 }
 </script>
